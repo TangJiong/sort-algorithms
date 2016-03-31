@@ -33,15 +33,15 @@ public class QuickSort {
     }
 
     // 递归排序
-    private static void sort(int[] array, int left, int right){
+    private static void quickSort(int[] array, int left, int right){
         if(left > right) return;
         int divider = partition(array, left, right);
-        sort(array, left, divider-1);
-        sort(array, divider+1, right);
+        quickSort(array, left, divider-1);
+        quickSort(array, divider+1, right);
     }
 
-    public static void quickSort(int[] array){
-        sort(array, 0, array.length-1);
+    public static void sort(int[] array){
+        quickSort(array, 0, array.length-1);
     }
 
 }

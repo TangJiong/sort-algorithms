@@ -10,13 +10,13 @@ import java.util.Arrays;
 public class SortTest {
 
     // 测试数组
-    int[] array = {3, 7, 8, 5, 2, 1, 9, 5, 4, 12, 7, 9, 100};
+    int[] array = {3, 7, 8, 5, 2, 1, 9, 5, 4, 12, 7, 9, 6};
 
     @Test
     public void testQuickSort(){
 
         System.out.println("排序前数组====>\n"+Arrays.toString(array));
-        QuickSort.quickSort(array);
+        QuickSort.sort(array);
         System.out.println("排序后数组====>\n"+Arrays.toString(array));
 
     }
