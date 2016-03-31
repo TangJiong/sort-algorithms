@@ -1,2 +1,2 @@
-# sort-algorithms
-my java implementation of common sort algorithms
+# 常见排序算法的Java实现
+看过很多次各种排序算法了，自己手动用Java实现一遍，加强理解
