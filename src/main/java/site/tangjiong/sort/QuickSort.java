@@ -40,6 +40,10 @@ public class QuickSort {
         quickSort(array, divider+1, right);
     }
 
+    /**
+     * 注意，直接修改的是原数组
+     * @param array 带排序数组
+     */
     public static void sort(int[] array){
         quickSort(array, 0, array.length-1);
     }
