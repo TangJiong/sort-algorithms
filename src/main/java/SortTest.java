@@ -1,6 +1,7 @@
 import org.junit.Test;
 import site.tangjiong.sort.BubbleSort;
 import site.tangjiong.sort.QuickSort;
+import site.tangjiong.sort.SelectSort;
 
 import java.util.Arrays;
 
@@ -26,6 +27,13 @@ public class SortTest {
     public void testBubbleSort(){
         System.out.println("排序前数组====>\n"+Arrays.toString(array));
         BubbleSort.sort(array);
+        System.out.println("排序后数组====>\n"+Arrays.toString(array));
+    }
+
+    @Test
+    public void testSelectSort(){
+        System.out.println("排序前数组====>\n"+Arrays.toString(array));
+        SelectSort.sort(array);
         System.out.println("排序后数组====>\n"+Arrays.toString(array));
     }
 
