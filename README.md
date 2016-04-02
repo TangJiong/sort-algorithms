@@ -1,6 +1,42 @@
 # 常见排序算法的Java实现
 看过很多次各种排序算法了，自己手动用Java实现一遍，加强理解
 
+## 冒泡排序
+
+### 简介
+冒泡排序（Bubble Sort，台湾译为：泡沫排序或气泡排序）是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。
+
+### 步骤
+1. 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
+2. 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
+3. 针对所有的元素重复以上的步骤，除了最后一个。
+4. 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+
+### 参考代码
+```java
+/**
+ * Created by TangJiong on 2016/4/2.
+ * 冒泡排序的实现
+ */
+public class BubbleSort {
+
+    public static void sort(int[] array){
+        for(int i=0; i<array.length; i++){
+            for(int j=0; j<array.length-i-1; j++){
+                if(array[j]>array[j+1]){
+                    SortHelper.swap(array, j, j+1);
+                }
+            }
+        }
+    }
+
+}
+```
+[查看完整代码](https://github.com/TangJiong/sort-algorithms/blob/master/src/main/java/site/tangjiong/sort/QuickSort.java)
+
+### 说明
+调用 ```BubbleSort.sort(int[] array)``` 对数组进行排序
+
 ## 快速排序
 
 ### 简介
@@ -13,19 +49,11 @@
 
 ### 参考代码
 ```java
+/**
+ * Created by TangJiong on 2016/3/31.
+ * 快速排序的实现
+ */
 public class QuickSort {
-
-    /**
-     * 交换数组中的两个元素
-     * @param array 数组
-     * @param i 前一个元素下标
-     * @param j 后一个元素下标
-     */
-    private static void swap(int[] array, int i, int j){
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
 
     // 选取基准元素，将数组划分为两部分，左小右大
     private static int partition(int[] array, int left, int right){
@@ -33,11 +61,11 @@ public class QuickSort {
         int dividerIndex = left;
         for(int i = left; i<right; i++){
             if(array[i] < pivot){
-                swap(array, dividerIndex, i); // 把比基准数(pivot)小的换到分隔符(dividerIndex)的前面
+                SortHelper.swap(array, dividerIndex, i); // 把比基准数(pivot)小的换到分隔符(dividerIndex)的前面
                 dividerIndex++;
             }
         }
-        swap(array, dividerIndex, right); // 交换分隔符和基准数
+        SortHelper.swap(array, dividerIndex, right); // 交换分隔符和基准数
         return dividerIndex;
     }
 
@@ -56,10 +84,10 @@ public class QuickSort {
     public static void sort(int[] array){
         quickSort(array, 0, array.length-1);
     }
-    
+
 }
 ```
-
+[查看完整代码](https://github.com/TangJiong/sort-algorithms/blob/master/src/main/java/site/tangjiong/sort/QuickSort.java)
 
 ### 说明
 调用 ```QuickSort.sort(int[] array)``` 对数组进行排序
