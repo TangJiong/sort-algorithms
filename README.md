@@ -145,3 +145,45 @@ public class SelectSort {
 
 ### 说明
 调用 ```SelectSort.sort(int[] array)``` 对数组进行排序
+
+## 插入排序
+
+### 简介
+设有一组关键字｛K1， K2，…， Kn｝；排序开始就认为 K1 是一个有序序列；让 K2 插入上述表长为 1 的有序序列，使之成为一个表长为 2 的有序序列；然后让 K3 插入上述表长为 2 的有序序列，使之成为一个表长为 3 的有序序列；依次类推，最后让 Kn 插入上述表长为 n-1 的有序序列，得一个表长为 n 的有序序列。
+
+### 步骤
+1. 从第一个元素开始，该元素可以认为已经被排序
+2. 取出下一个元素，在已经排序的元素序列中从后向前扫描
+3. 如果该元素（已排序）大于新元素，将该元素移到下一位置
+4. 重复步骤 3，直到找到已排序的元素小于或者等于新元素的位置
+5. 将新元素插入到该位置后
+6. 重复步骤 2~5
+
+### 参考代码
+```java
+/**
+ * Created by TangJiong on 2016/4/3.
+ * 插入排序的实现
+ */
+public class InsertSort {
+
+    public static void sort(int[] array){
+        if(array.length<=1) return; //只有一个元素直接返回
+        for(int i=1; i<array.length; i++){
+            for(int j=i; j>0; j--){
+                // j-1之前的序列是排好序的，内循环做的是把j放到j-1序列的合适位置
+                if(array[j-1] > array[j]){
+                    SortHelper.swap(array, j-1, j);
+                }else {
+                    break;
+                }
+            }
+        }
+    }
+
+}
+```
+[查看完整代码](https://github.com/TangJiong/sort-algorithms/blob/master/src/main/java/site/tangjiong/sort/InsertSort.java)
+
+### 说明
+调用 ```InsertSort.sort(int[] array)``` 对数组进行排序
