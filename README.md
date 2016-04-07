@@ -187,3 +187,139 @@ public class InsertSort {
 
 ### 说明
 调用 ```InsertSort.sort(int[] array)``` 对数组进行排序
+
+## 归并排序
+
+### 简介
+归并排序（Merge Sort，台湾译作：合并排序）是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。
+归并操作(Merge)，也叫归并算法，指的是将两个已经排序的序列合并成一个序列的操作。归并排序算法依赖归并操作。归并排序有多路归并排序、两路归并排序 , 可用于内排序，也可以用于外排序。这里仅对内排序的两路归并方法进行讨论。
+
+### 步骤
+1. 把 n 个记录看成 n 个长度为 l 的有序子表
+2. 进行两两归并使记录关键字有序，得到 n/2 个长度为 2 的有序子表
+3. 重复第 2 步直到所有记录归并成一个长度为 n 的有序表为止。
+
+如数组 array =  [5, 2, 4, 6, 1, 3, 2, 6]，归并排序流程如下所示：
+![merge-sort-example](/img/merge-sort-example.gif)
+
+### 参考代码
+```java
+/**
+ * Created by TangJiong on 2016/4/7.
+ * 归并排序，最简单的两路归并排序
+ */
+public class MergeSort {
+
+    private static void mergeSort(int[] array, int first, int last){
+        if(last - first < 1){
+            return;
+        }
+        int middle = Math.floorDiv(first+last, 2);
+        mergeSort(array, first, middle);
+        mergeSort(array, middle+1, last);
+
+        int f = first, m = middle, i, temp;
+
+        while(f <= m && m+1 <= last){
+            if(array[f] >= array[m+1]){
+                temp = array[m+1];
+                for(i=m; i>=f; i--){
+                    array[i+1] = array[i];
+                }
+                array[f] = temp;
+                m++;
+            }else {
+                f++;
+            }
+        }
+
+    }
+
+    public static void sort(int[] array){
+        mergeSort(array, 0, array.length-1);
+    }
+
+}
+```
+[查看完整代码](https://github.com/TangJiong/sort-algorithms/blob/master/src/main/java/site/tangjiong/sort/MergeSort.java)
+
+### 说明
+调用 ```MergeSort.sort(int[] array)``` 对数组进行排序
+
+## 堆排序
+
+### 简介
+参考[bubkoo的博客](http://bubkoo.com/2014/01/14/sort-algorithm/heap-sort/)
+堆排序的平均时间复杂度为O(nlogn),接近于最坏的时间复杂度。在最好情况下，时间复杂度为O(1).
+
+### 步骤
+同上
+
+### 参考代码
+```java
+/**
+ * Created by TangJiong on 2016/4/7.
+ * 堆排序
+ */
+public class HeapSort {
+
+    /**
+     * 从index开始检查并保持最大堆的性质
+     * @param array 数组
+     * @param index 检查的起始下标
+     * @param heapSize 堆大小
+     */
+    private static void maxHeapify(int[] array, int index, int heapSize){
+        int iMax = index;
+        int iLeft = 2 * index +1;
+        int iRight = 2 * (index + 1);
+
+        if(iLeft < heapSize && array[index] < array[iLeft]){
+            iMax = iLeft;
+        }
+
+        if(iRight < heapSize && array[iMax] < array[iRight]){
+            iMax = iRight;
+        }
+
+        if(iMax != index){
+            SortHelper.swap(array, iMax, index);
+            maxHeapify(array, iMax, heapSize);
+        }
+    }
+
+    /**
+     * 构建最大堆
+     * @param array 数组
+     * @param heapSize 堆大小
+     */
+    private static void buildMaxHeap(int[] array, int heapSize){
+        int iParent = Math.floorDiv(heapSize-1, 2);
+
+        for(int i=iParent; i>=0; i--){
+            maxHeapify(array, i, heapSize);
+        }
+    }
+
+
+    public static void sort(int[] array){
+        int heapSize = array.length;
+        buildMaxHeap(array, heapSize);
+
+        for(int i = heapSize -1; i>0; i--){
+            SortHelper.swap(array, 0, i);
+            maxHeapify(array, 0, i);
+        }
+    }
+
+}
+```
+[查看完整代码](https://github.com/TangJiong/sort-algorithms/blob/master/src/main/java/site/tangjiong/sort/HeapSort.java)
+
+### 说明
+调用 ```HeapSort.sort(int[] array)``` 对数组进行排序
+
+## 希尔排序
+
+### 简介
+TODO
